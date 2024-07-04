@@ -1,9 +1,20 @@
-FROM node:17
+# Use a Node.js version that is >=18.0.0
+FROM node:18
+
+# Set working directory
 WORKDIR /app
-COPY ["package.json", "./"]
+
+# Copy package.json to the container
+COPY package.json ./
+
+# Install dependencies
 RUN yarn install
+
+# Copy the rest of the application code to the container
 COPY . .
-ENV PORT=8000
-ENV JWT_TOKEN_SECRET=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTY0MDg3MTk2NCwiZXhwIjoxNjQwODc1NTY0fQ.X2KO-pDj3itxifz14dcY1jDMNGGc0KoIQlBE7I2DkbA
-ENV TOKEN_EXPIRE_SECONDS=86400
+
+# Expose the application port
+EXPOSE 3000
+
+# Start the application
 CMD ["yarn", "start"]
