@@ -1,0 +1,1 @@
+This is a folder where i will store the designs to make the site come to life than try to convert it to JSX.
