@@ -1,14 +1,28 @@
-// src/App.js
+// src/components/general/Input.js
 
 import React from 'react';
-import SomeComponent from './components/SomeComponent';
+import './components/general/general.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-function App() {
+const Input = ({ label, type, className, value, setValue, icon, inputAttributes = {} }) => {
+  const handleInput = (event) => {
+    setValue(event.target.value);
+  };
+
   return (
-    <div className="App">
-      <SomeComponent />
+    <div className={`input-wrapper ${className}`}>
+      {label && <label>{label}</label>}
+      <div className="input-container">
+        {icon && <FontAwesomeIcon icon={icon} className="input-icon" />}
+        <input
+          type={type}
+          value={value}
+          onChange={handleInput}
+          {...inputAttributes}
+        />
+      </div>
     </div>
   );
-}
+};
 
-export default App;
+export default Input;
