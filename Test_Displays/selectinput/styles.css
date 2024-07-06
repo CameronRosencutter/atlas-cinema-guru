@@ -1,0 +1,18 @@
+/* general.css */
+.select-input-wrapper {
+    margin-bottom: 1rem;
+  }
+  
+  .select-input-wrapper label {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  
+  .select-input-wrapper select {
+    padding: 0.5rem;
+    width: 350px;
+    color: white;
+    background-color: #2C2C2C;
+    border-bottom: solid #BB000E 2px;
+  }
+  
