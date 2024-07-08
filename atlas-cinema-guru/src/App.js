@@ -1,28 +1,67 @@
-// src/components/general/Input.js
-
-import React from 'react';
+import React, { useState } from 'react';
 import './components/general/general.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Input from './components/general/Input';
+import SelectInput from './components/general/SelectInput';
+import Button from './components/general/Button';
+import SearchBar from './components/general/SearchBar';
 
-const Input = ({ label, type, className, value, setValue, icon, inputAttributes = {} }) => {
-  const handleInput = (event) => {
-    setValue(event.target.value);
-  };
+const App = () => {
+    const [username, setUsername] = useState('');
+    const [selectedOption, setSelectedOption] = useState('');
+    const [searchTitle, setSearchTitle] = useState('');
 
-  return (
-    <div className={`input-wrapper ${className}`}>
-      {label && <label>{label}</label>}
-      <div className="input-container">
-        {icon && <FontAwesomeIcon icon={icon} className="input-icon" />}
-        <input
-          type={type}
-          value={value}
-          onChange={handleInput}
-          {...inputAttributes}
-        />
-      </div>
-    </div>
-  );
+    const options = [
+        { value: 'option1', label: 'Option 1' },
+        { value: 'option2', label: 'Option 2' },
+        { value: 'option3', label: 'Option 3' },
+    ];
+
+    const handleButtonClick = () => {
+        console.log('Button clicked');
+    };
+
+    return (
+        <div className="App">
+            <div className="inputdiv">
+                <div className="inputheader">
+                    <img src="image.png" width="30px" height="30px" alt="User Icon" />
+                    <h1>Username</h1>
+                </div>
+                <Input
+                    label="Username"
+                    type="text"
+                    className="my-input"
+                    value={username}
+                    setValue={setUsername}
+                />
+            </div>
+
+            <div className="select-input-wrapper">
+                <SelectInput
+                    label="Select Option"
+                    options={options}
+                    className="my-select-input"
+                    value={selectedOption}
+                    setValue={setSelectedOption}
+                />
+            </div>
+
+            <div className="button-container">
+                <Button
+                    label="Load More..."
+                    className="my-button"
+                    onClick={handleButtonClick}
+                />
+            </div>
+
+            <div className="search-bar-container">
+                <SearchBar
+                    title={searchTitle}
+                    setTitle={setSearchTitle}
+                />
+            </div>
+        </div>
+    );
 };
 
-export default Input;
+export default App;
