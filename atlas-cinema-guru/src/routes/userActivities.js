@@ -1,9 +1,9 @@
 const express = require('express')
 const router = express.Router()
-const UserActivity = require('../models/UserActivity')
-const User = require('../models/User')
-const { Title } = require('../models/Title')
-const { verifyToken } = require('../utils/tokens')
+const UserActivity = require('../../../models/UserActivity')
+const User = require('../../../models/User')
+const { Title } = require('../../../models/Title')
+const { verifyToken } = require('../../../utils/tokens')
 
 router.get('/', verifyToken, (req, res) => {
     UserActivity.findAll({
