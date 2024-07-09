@@ -3,15 +3,9 @@ import './auth.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
 
-const Login = ({ username, password, setUsername, setPassword, setIsLoggedIn, setUserUsername }) => {
-    const handleLogin = (e) => {
-        e.preventDefault();
-        // Implement your login logic here
-        // If successful, setIsLoggedIn(true) and setUserUsername(username)
-    };
-
+const Login = ({ username, password, setUsername, setPassword }) => {
     return (
-        <form className="auth-form" onSubmit={handleLogin}>
+        <div>
             <h2>Sign in with your account</h2>
             <div className="input-group">
                 <FontAwesomeIcon icon={faUser} className="input-icon" />
@@ -34,7 +28,7 @@ const Login = ({ username, password, setUsername, setPassword, setIsLoggedIn, se
             <button type="submit">
                 <FontAwesomeIcon icon={faLock} /> Sign In
             </button>
-        </form>
+        </div>
     );
 };
 

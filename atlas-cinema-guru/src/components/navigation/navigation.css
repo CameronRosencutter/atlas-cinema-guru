@@ -1,0 +1,32 @@
+/* src/components/navigation/navigation.css */
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 10px 20px;
+    color: white;
+}
+
+nav img {
+    border-radius: 50%;
+}
+
+nav p {
+    margin: 0;
+}
+
+nav span {
+    cursor: pointer;
+    color: red;
+}
+
+nav .logout {
+    display: flex;
+    align-items: center;
+}
+
+nav .logout img {
+    margin-right: 10px;
+}

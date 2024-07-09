@@ -1,0 +1,9 @@
+/* src/routes/dashboard/dashboard.css */
+
+/* Add your dashboard specific styles here */
+.dashboard {
+    background-color: #2C2C2C;
+    color: white;
+    height: 100vh;
+    padding: 20px;
+}
