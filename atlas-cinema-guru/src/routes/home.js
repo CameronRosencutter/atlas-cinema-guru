@@ -1,9 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import '../components/dashboard.css';
 import MovieCard from '../components/movies/moviecard';
 import Filter from '../components/movies/filter';
 import Button from '../components/general/Button';
+
+const mockMovies = [
+    {
+        imdbId: '1',
+        title: 'Mock Movie 1',
+        synopsis: 'This is a synopsis for mock movie 1.',
+        genres: ['action', 'drama']
+    },
+    {
+        imdbId: '2',
+        title: 'Mock Movie 2',
+        synopsis: 'This is a synopsis for mock movie 2.',
+        genres: ['comedy', 'romance']
+    }
+];
 
 const HomePage = () => {
     const [movies, setMovies] = useState([]);
@@ -15,26 +29,18 @@ const HomePage = () => {
     const [page, setPage] = useState(1);
 
     const loadMovies = (page) => {
-        axios.get('/api/titles/advancedsearch', {
-            params: {
-                minYear,
-                maxYear,
-                genres: genres.join(','),
-                title,
-                sort,
-                page
-            }
-        }).then(response => {
-            setMovies(prevMovies => [...prevMovies, ...response.data]);
-        }).catch(error => {
-            console.error('Error fetching movies:', error);
-        });
+        // Mock data fetching
+        setMovies(prevMovies => [...prevMovies, ...mockMovies]);
     };
 
     useEffect(() => {
         setMovies([]); // Reset movies when filters change
         loadMovies(1); // Load first page of movies
     }, [minYear, maxYear, genres, title, sort]);
+
+    useEffect(() => {
+        loadMovies(page); // Load movies on page change
+    }, [page]);
 
     return (
         <div className="home-page">
@@ -58,13 +64,11 @@ const HomePage = () => {
             <Button
                 label="Load More.."
                 className="load-more-button"
-                onClick={() => {
-                    setPage(prevPage => prevPage + 1);
-                    loadMovies(page + 1);
-                }}
+                onClick={() => setPage(prevPage => prevPage + 1)}
             />
         </div>
     );
 };
 
 export default HomePage;
+
