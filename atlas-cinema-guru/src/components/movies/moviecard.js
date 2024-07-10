@@ -15,12 +15,19 @@ const MovieCard = ({ movie }) => {
                 if (response.data.some(favMovie => favMovie.imdbId === movie.imdbId)) {
                     setIsFavorite(true);
                 }
+            })
+            .catch(error => {
+                console.error('Error fetching favorite movies:', error);
             });
+
         axios.get('/api/titles/watchlater/')
             .then(response => {
                 if (response.data.some(watchLaterMovie => watchLaterMovie.imdbId === movie.imdbId)) {
                     setIsWatchLater(true);
                 }
+            })
+            .catch(error => {
+                console.error('Error fetching watch later movies:', error);
             });
     }, [movie.imdbId]);
 
@@ -30,24 +37,28 @@ const MovieCard = ({ movie }) => {
         const setState = type === 'favorite' ? setIsFavorite : setIsWatchLater;
 
         if (isCurrently) {
-            axios.delete(url).then(() => setState(false));
+            axios.delete(url)
+                .then(() => setState(false))
+                .catch(error => console.error(`Error removing from ${type}:`, error));
         } else {
-            axios.post(url).then(() => setState(true));
+            axios.post(url)
+                .then(() => setState(true))
+                .catch(error => console.error(`Error adding to ${type}:`, error));
         }
     };
 
     return (
         <li className="movie-card">
             <div className="icons">
-                <FontAwesomeIcon 
-                    icon={faStar} 
-                    className={`icon ${isFavorite ? 'selected' : ''}`} 
-                    onClick={() => handleClick('favorite')} 
+                <FontAwesomeIcon
+                    icon={faStar}
+                    className={`icon ${isFavorite ? 'selected' : ''}`}
+                    onClick={() => handleClick('favorite')}
                 />
-                <FontAwesomeIcon 
-                    icon={faClock} 
-                    className={`icon ${isWatchLater ? 'selected' : ''}`} 
-                    onClick={() => handleClick('watchlater')} 
+                <FontAwesomeIcon
+                    icon={faClock}
+                    className={`icon ${isWatchLater ? 'selected' : ''}`}
+                    onClick={() => handleClick('watchlater')}
                 />
             </div>
             <h2>{movie.title}</h2>
