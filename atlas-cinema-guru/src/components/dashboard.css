@@ -1,9 +1,26 @@
 /* src/routes/dashboard/dashboard.css */
 
-/* Add your dashboard specific styles here */
 .dashboard {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
     background-color: #2C2C2C;
     color: white;
-    height: 100vh;
+}
+
+.dashboard-content {
+    display: flex;
+    flex: 1;
+}
+
+.sidebar {
+    width: 200px;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+}
+
+.main-content {
+    flex: 1;
     padding: 20px;
 }
