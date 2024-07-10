@@ -14,12 +14,17 @@
 
 /* Sidebar styles */
 .sidebar {
-    width: 250px;
+    width: 60px;
     background-color: #BB000E;
     color: white;
     padding: 10px;
     display: flex;
     flex-direction: column;
+    transition: width 0.3s ease;
+}
+
+.sidebar.expanded {
+    width: 250px;
 }
 
 .sidebar ul {
@@ -57,4 +62,15 @@
     margin-bottom: 10px;
     font-size: 16px;
     color: white;
+}
+
+.toggle-button {
+    cursor: pointer;
+    padding: 10px;
+    color: white;
+    background-color: #BB000E;
+    border: none;
+    font-size: 18px;
+    margin-bottom: 10px;
+    align-self: flex-end;
 }

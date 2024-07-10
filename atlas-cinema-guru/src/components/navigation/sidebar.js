@@ -16,6 +16,10 @@ const SideBar = () => {
         navigate(`/${pageName}`);
     };
 
+    const toggleSidebar = () => {
+        setSmall(!small);
+    };
+
     useEffect(() => {
         axios.get('/api/activity')
             .then(response => {
@@ -27,19 +31,22 @@ const SideBar = () => {
     }, []);
 
     return (
-        <nav className="sidebar">
+        <nav className={`sidebar ${small ? '' : 'expanded'}`}>
+            <button className="toggle-button" onClick={toggleSidebar}>
+                {small ? '➡️' : '⬅️'}
+            </button>
             <ul>
                 <li className={selected === 'home' ? 'active' : ''} onClick={() => setPage('home')}>
                     <span className="icon">🏠</span>
-                    Home
+                    {!small && 'Home'}
                 </li>
                 <li className={selected === 'favorites' ? 'active' : ''} onClick={() => setPage('favorites')}>
                     <span className="icon">⭐</span>
-                    Favorites
+                    {!small && 'Favorites'}
                 </li>
                 <li className={selected === 'watchlater' ? 'active' : ''} onClick={() => setPage('watchlater')}>
                     <span className="icon">⏰</span>
-                    Watch Later
+                    {!small && 'Watch Later'}
                 </li>
             </ul>
             {showActivities && (

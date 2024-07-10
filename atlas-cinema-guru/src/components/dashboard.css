@@ -14,10 +14,17 @@
 }
 
 .sidebar {
-    width: 200px;
-    background-color: #333;
+    width: 60px;
+    background-color: #BB000E;
     color: white;
     padding: 10px;
+    display: flex;
+    flex-direction: column;
+    transition: width 0.3s ease;
+}
+
+.sidebar.expanded {
+    width: 250px;
 }
 
 .main-content {
